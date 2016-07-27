@@ -26,19 +26,16 @@ def display_header(win):
 
 def fill_details(rep_obj):
     # TODO: Include Edit Feature
-    print "Inside Fill Details", rep_obj.ApplName
     pass
 
 
 def audit_details(rep_obj):
     # TODO: Include Edit Feature
-    print "Inside Audit Details", rep_obj.ApplName
     pass
 
 
 def print_report(rep_obj):
     # TODO: Include Edit Feature
-    print "Inside print Report", rep_obj.ApplName
     pass
 
 
@@ -67,10 +64,14 @@ def viewall():
         lbl_appl_mob_no = Label(window, text=i.ApplMobNo, width=12)
         lbl_pan_no = Label(window, text=i.panNo, width=13)
         lbl_rep_status = Label(window, text=i.rep_status, width=8)
-        btn_fill_details = Button(window, text="Field Report", command=lambda: fill_details(i))
-        btn_view_all_details = Button(window, text="Audit Details", command=lambda: audit_details(i))
-        btn_print_report = Button(window, text="Print Report", command=lambda: print_report(i))
-        # FIXME: all button functions not working properly, taking the last input in the list.
+        # lambda i=i, inspired by
+        # https://stackoverflow.com/questions/10865116/
+        # python-tkinter-creating-buttons-in-for-loop-passing-command-arguments/
+        # 10865170#10865170?newreg=2725042c8f9449998b9890725cdeeb68
+        # --All it does is store the info of which 'i' to use when lambda is defined.
+        btn_fill_details = Button(window, text="Field Report", command=lambda i=i: fill_details(i))
+        btn_view_all_details = Button(window, text="Audit Details", command=lambda i=i: audit_details(i))
+        btn_print_report = Button(window, text="Print Report", command=lambda i=i: print_report(i))
         if i.rep_status == "Pending":
             btn_view_all_details.config(state='disabled')
             btn_print_report.config(state='disabled')
