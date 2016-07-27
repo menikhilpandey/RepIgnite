@@ -52,10 +52,10 @@ class ResidenceTVerify:
         self.callDate = self.enterlist[5]
         self.callTime = self.enterlist[6]
         self.residenceType = easygui.choicebox(msg="Select Residence Type", title="Residence Tele-Verification",
-                                                   choices=["Self Owned", "Owned By Relatives", "Rented",
-                                                            "Paying Guest",
-                                                            "Owned by Parents", "Owned by Parents", "Owned by Friends",
-                                                            "Company Accomodation"])
+                                               choices=["Self Owned", "Owned By Relatives", "Rented",
+                                                        "Paying Guest",
+                                                        "Owned by Parents", "Owned by Parents", "Owned by Friends",
+                                                        "Company Accomodation"])
         self.Outcome = easygui.choicebox(msg="Enter Outcome", title="Residence Tele-Verification",
                                          choices=["Contacted", "Not Contacted", "Constantly Engaged", "No Response"])
         self.boolRecom = easygui.boolbox(msg="Select one of following", title="Residence Tele-Verification",

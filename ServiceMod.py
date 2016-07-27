@@ -1,9 +1,10 @@
 import easygui
+
+
 # TODO: In next version use easygui.multenterbox instead of independent enterbox
 
 
 class Service:
-
     def __init__(self):
         self.employerName = easygui.enterbox(msg="Enter Name of Employer", title="Service Visit Inputs")
         self.employerAddr = easygui.enterbox(msg="Enter Address of Employer", title="Service Visit Inputs")

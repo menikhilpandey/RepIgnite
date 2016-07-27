@@ -2,7 +2,6 @@ import easygui
 
 
 class Guarantor:
-
     def __init__(self):
         self.enterlist = easygui.multenterbox(msg="Enter Guarantor Details", title="Guarantor Details",
                                               fields=["Name of Guarantor", "Address of Guarantor", "DOB of Guarantor",

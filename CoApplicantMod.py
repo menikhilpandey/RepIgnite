@@ -2,7 +2,6 @@ import easygui
 
 
 class CoApplicant:
-
     def __init__(self):
         self.enterlist = easygui.multenterbox(msg="Fill Co-Applicant Details", title="Co Applicant Details",
                                               fields=["Name", "Father's Name", "Mobile No.", "Telephone No.",

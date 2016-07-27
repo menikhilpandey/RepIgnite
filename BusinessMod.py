@@ -1,19 +1,21 @@
 import easygui
+
+
 # TODO: In next version use easygui.multenterbox instead of independent enterbox
 
 
 class YearAssess:
     def __init__(self, assess_year):
         self.assesYear = assess_year
-        self.wardNo = easygui.enterbox(msg="Enter Ward No for "+assess_year, title="ITR Verification")
-        self.serialNo = easygui.enterbox(msg="Enter Serial No for "+assess_year, title="ITR Verification")
-        self.fillingDate = easygui.enterbox(msg="Enter Date of Filling for "+assess_year+" (dd/mm/yyyy)",
+        self.wardNo = easygui.enterbox(msg="Enter Ward No for " + assess_year, title="ITR Verification")
+        self.serialNo = easygui.enterbox(msg="Enter Serial No for " + assess_year, title="ITR Verification")
+        self.fillingDate = easygui.enterbox(msg="Enter Date of Filling for " + assess_year + " (dd/mm/yyyy)",
                                             title="ITR Verification")
-        self.totalInc = easygui.enterbox(msg="Enter Total Income for "+assess_year, title="ITR Verification")
-        self.totalTaxInc = easygui.enterbox(msg="Enter Total Taxable Income for "+assess_year,
+        self.totalInc = easygui.enterbox(msg="Enter Total Income for " + assess_year, title="ITR Verification")
+        self.totalTaxInc = easygui.enterbox(msg="Enter Total Taxable Income for " + assess_year,
                                             title="ITR Verification")
-        self.totalTaxPaid = easygui.enterbox(msg="Enter Total Tax Paid for "+assess_year, title="ITR Verification")
-        self.fillingMode = easygui.choicebox(msg="Select Mode of Filling for "+assess_year, title="ITR Verification",
+        self.totalTaxPaid = easygui.enterbox(msg="Enter Total Tax Paid for " + assess_year, title="ITR Verification")
+        self.fillingMode = easygui.choicebox(msg="Select Mode of Filling for " + assess_year, title="ITR Verification",
                                              choices=["e-Filling", "Manual"])
 
 
@@ -29,7 +31,6 @@ class ITRClass:
 
 
 class Business:
-
     def __init__(self):
         self.firmName = easygui.enterbox(msg="Enter Name of Firm/Company", title="Business Visit Inputs")
         self.inceptionDate = easygui.enterbox(msg="Enter Date of Inception (dd/mm/yyyy)",

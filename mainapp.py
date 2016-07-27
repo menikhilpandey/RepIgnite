@@ -4,7 +4,6 @@ from Tkinter import *
 
 
 class OpeningFrame:
-
     def __init__(self, master):
         frame = Frame(master)
         frame.pack()
@@ -21,6 +20,7 @@ class OpeningFrame:
         self.blank_lbl1 = Label(frame).grid(row=0)
         self.blank_lbl1 = Label(frame).grid(row=2)
         self.blank_lbl1 = Label(frame).grid(row=4)
+
 
 masterObj = Tk(screenName='HomeScreen', className='repIgnite')
 

@@ -1,5 +1,6 @@
 from Tkinter import *
 
+import os
 import pickle
 import easygui
 import ServiceMod
@@ -99,34 +100,33 @@ def save2file(rep_obj):
     rep_obj.rep_status = easygui.buttonbox(msg="Select Status of This Report", title="Save Report",
                                            choices=["Complete", "Pending"], default_choice="Pending",
                                            cancel_choice="Pending")
-    try:
-        # TODO: FIX: cannot save 2nd time
-        output = open("Test Data\data.rep", 'rb')
-        objects = []
-        while True:
+    output_file_loc = "Test Data\data.rep"
+    if os.path.isfile(output_file_loc):
+        with open(output_file_loc, 'rb') as output:
+            objects = []
             try:
-                objects.append(pickle.load(output))
+                while True:
+                    objects.append(pickle.load(output))
             except EOFError:
-                break
-        output.close()
-        output = open("Test Data\data.rep", 'wb')
-        flag = 0 if objects else 1
-        for i in objects:
-            if i.panNo == rep_obj.panNo:
-                if i.rep_status == "Pending" and rep_obj.rep_status == "Complete":
-                    flag = 1
-                else:
+                pass
+        with open(output_file_loc, 'wb') as output:
+            flag = 1
+            for i in objects:
+                if i.panNo == rep_obj.panNo:
                     flag = easygui.boolbox("Report with Same PAN No. exists, Continue saving this Report?",
                                            choices=["Yes", "No"], title="Save Report", default_choice="Yes",
                                            cancel_choice="No")
+                    keep_other_obj = easygui.boolbox("Do you want to keep Existing Report with Same PAN?",
+                                                     choices=["Yes", "No"], title="Keep Report", default_choice="Yes",
+                                                     cancel_choice="No")
+                    if keep_other_obj:
+                        pickle.dump(i, output)
+                else:
                     pickle.dump(i, output)
-            else:
-                pickle.dump(i, output)
-        if flag:
-            pickle.dump(rep_obj, output)
-        output.close()
-    except IOError:
-        with open("Test Data\data.rep", 'wb') as output:
+            if flag:
+                pickle.dump(rep_obj, output)
+    else:
+        with open(output_file_loc, 'wb') as output:
             pickle.dump(rep_obj, output)
 
 
