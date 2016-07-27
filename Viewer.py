@@ -69,9 +69,9 @@ def viewall():
         # python-tkinter-creating-buttons-in-for-loop-passing-command-arguments/
         # 10865170#10865170?newreg=2725042c8f9449998b9890725cdeeb68
         # --All it does is store the info of which 'i' to use when lambda is defined.
-        btn_fill_details = Button(window, text="Field Report", command=lambda i=i: fill_details(i))
-        btn_view_all_details = Button(window, text="Audit Details", command=lambda i=i: audit_details(i))
-        btn_print_report = Button(window, text="Print Report", command=lambda i=i: print_report(i))
+        btn_fill_details = Button(window, text="Field Report", command=lambda obj_lamb=i: fill_details(obj_lamb))
+        btn_view_all_details = Button(window, text="Audit Details", command=lambda obj_lamb=i: audit_details(obj_lamb))
+        btn_print_report = Button(window, text="Print Report", command=lambda obj_lamb=i: print_report(obj_lamb))
         if i.rep_status == "Pending":
             btn_view_all_details.config(state='disabled')
             btn_print_report.config(state='disabled')
