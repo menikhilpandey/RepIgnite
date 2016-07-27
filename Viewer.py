@@ -2,6 +2,7 @@ from Tkinter import *
 
 import pickle
 import easygui
+import NewReport
 
 
 def display_header(win):
@@ -24,18 +25,22 @@ def display_header(win):
     lbl_rep_status.grid(row=0, column=7)
 
 
-def fill_details(rep_obj):
-    # TODO: Include Edit Feature
+def fill_details(rep_obj, window):
+    # TODO: Implement Edit Feature
+    window.destroy()
+    NewReport.create(rep_obj)
     pass
 
 
-def audit_details(rep_obj):
-    # TODO: Include Edit Feature
+def audit_details(rep_obj, window):
+    # TODO: Implement Audit Feature, all details will be shown in tk window, option SAVE and EDIT will be given
+    window.destroy()
     pass
 
 
-def print_report(rep_obj):
-    # TODO: Include Edit Feature
+def print_report(rep_obj, window):
+    # TODO: Implement Print Feature, reports will be printed in .pdf or .doc or .xlsx format, whichever suitable
+    window.destroy()
     pass
 
 
@@ -69,9 +74,12 @@ def viewall():
         # python-tkinter-creating-buttons-in-for-loop-passing-command-arguments/
         # 10865170#10865170?newreg=2725042c8f9449998b9890725cdeeb68
         # --All it does is store the info of which 'i' to use when lambda is defined.
-        btn_fill_details = Button(window, text="Field Report", command=lambda obj_lamb=i: fill_details(obj_lamb))
-        btn_view_all_details = Button(window, text="Audit Details", command=lambda obj_lamb=i: audit_details(obj_lamb))
-        btn_print_report = Button(window, text="Print Report", command=lambda obj_lamb=i: print_report(obj_lamb))
+        btn_fill_details = Button(window, text="Field Report",
+                                  command=lambda obj_lamb=i: fill_details(obj_lamb, window))
+        btn_view_all_details = Button(window, text="Audit Details",
+                                      command=lambda obj_lamb=i: audit_details(obj_lamb, window))
+        btn_print_report = Button(window, text="Print Report",
+                                  command=lambda obj_lamb=i: print_report(obj_lamb, window))
         if i.rep_status == "Pending":
             btn_view_all_details.config(state='disabled')
             btn_print_report.config(state='disabled')

@@ -113,6 +113,7 @@ def save2file(rep_obj):
             flag = 1
             for i in objects:
                 if i.panNo == rep_obj.panNo:
+                    # TODO: Provide view of both conflicting reports
                     flag = easygui.boolbox("Report with Same PAN No. exists, Continue saving this Report?",
                                            choices=["Yes", "No"], title="Save Report", default_choice="Yes",
                                            cancel_choice="No")
@@ -130,7 +131,12 @@ def save2file(rep_obj):
             pickle.dump(rep_obj, output)
 
 
-def create():
+def create(rep_obj=None):
+    if rep_obj:
+        print rep_obj.ApplName
+    else:
+        print "Fresh Entry"
+    # TODO: Continue Implementing Edit Feature
     window = Tk(className="Create Report")
     new_appl = Applicant()
 
