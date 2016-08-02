@@ -12,8 +12,9 @@ import ResidenceVerifMod
 
 
 class Applicant:
-    def __init__(self):
-        self.Branch = None
+    def __init__(self, rep_obj):
+        self.rep_obj = rep_obj
+        self.Branch = self.rep_obj.Branch
         self.FileNo = None
         self.FileDate = None
         self.DSAName = None
@@ -41,9 +42,6 @@ class Applicant:
         self.rep_status = None
 
     def fill_details(self):
-        self.Branch = easygui.choicebox(msg="Select Branch Name", title="New Allocation",
-                                        choices=["Gurgaon", "Dwarka", "Delhi(Barakhamba Road)", "Noida",
-                                                 "Greater Noida", "Meerut", "Ghaziabad", "Netaji Subhash Place"])
         self.enterlist = easygui.multenterbox(msg="Enter Allocation Details", title="New Allocation",
                                               fields=["File Number", "Date of Receiving of File (dd/mm/yyyy)",
                                                       "DSA Name", "Applicant's Name", "Applicant's Father Name",
@@ -51,7 +49,13 @@ class Applicant:
                                                       "Applicant residing on Address Since (Years)",
                                                       "Applicant's Mobile Number", "Applicant's Telephone Number",
                                                       "Applicant's DOB (dd/mm/yyyy)", "Applicant's Martial Status",
-                                                      "Applicant's PAN Number"])
+                                                      "Applicant's PAN Number"],
+                                              values=[self.rep_obj.FileNo, self.rep_obj.FileDate, self.rep_obj.DSAName,
+                                                      self.rep_obj.ApplName, self.rep_obj.ApplFatherName,
+                                                      self.rep_obj.ApplAddress, self.rep_obj.ResidingSince,
+                                                      self.rep_obj.ApplMobNo, self.rep_obj.ApplTelNo,
+                                                      self.rep_obj.ApplDOB, self.rep_obj.ApplMaritalStatus,
+                                                      self.rep_obj.panNo])
         self.FileNo = self.enterlist[0]
         self.FileDate = self.enterlist[1]
         self.DSAName = self.enterlist[2]
@@ -131,10 +135,9 @@ def save2file(rep_obj):
             pickle.dump(rep_obj, output)
 
 
-def create():
+def create(rep_obj):
     window = Tk(className="Create Report")
-    new_appl = Applicant()
-
+    new_appl = Applicant(rep_obj)
     btn_new_alloc = Button(window, text="Fill File Allocation Details", width=30, command=new_appl.fill_details)
     btn_resi_verif = Button(window, text="Fill Residence Verification Inputs", width=30,
                             command=new_appl.fill_residence_visit)

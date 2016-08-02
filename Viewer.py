@@ -2,8 +2,7 @@ from Tkinter import *
 
 import pickle
 import easygui
-import NewReport
-
+import EditReport
 
 def display_header(win):
     lbl_s_no = Label(win, text="S.No.", width=4)
@@ -28,7 +27,7 @@ def display_header(win):
 def fill_details(rep_obj, window):
     # TODO: Implement Edit Feature
     window.destroy()
-    NewReport.create(rep_obj)
+    EditReport.create(rep_obj)
     pass
 
 
